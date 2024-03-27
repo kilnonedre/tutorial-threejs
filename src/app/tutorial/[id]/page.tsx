@@ -5,12 +5,18 @@ export const generateStaticParams = () => {
   return [{ id: '1' }]
 }
 
-const Tutorial = ({ params }: { params: { id: string } }) => {
-  console.log(params)
+const pathToComponentObj = {
+  '1': <ScrollAnimation />,
+}
 
+const Tutorial = ({
+  params,
+}: {
+  params: { id: keyof typeof pathToComponentObj }
+}) => {
   return (
     <div className="h-screen w-screen bg-[#d9afd9] bg-gradient-to-b from-[#97d9e1] to-[#d9afd9]">
-      <ScrollAnimation />
+      {pathToComponentObj[params.id]}
     </div>
   )
 }
